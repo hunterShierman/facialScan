@@ -12,10 +12,25 @@ screen.fill((0,200,200))
 plane = pygame.image.load("plane.png")
 plane = pygame.transform.flip(plane, False, True)
 plane = pygame.transform.scale(plane, (100, 100))
+
+
+
+class enemyPlane:
+
+    def __init__(self, x_coordinate, y_coordinate, health, speed):
+        self.image = pygame.image.load("plane.png")
+        self.image = pygame.transform.flip(plane, False, True)
+        self.image = pygame.transform.scale(plane, (100, 100))
+
+enemy = enemyPlane(100, 100, 1000, 5)
+
+
+
  
 # creating a bool value which checks 
 # if game is running
 running = True
+
  
 # Game loop
 # keep game running till running is true
@@ -31,7 +46,7 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
-    screen.blit(plane, (0,0))
+    screen.blit(enemy.image, (0,0))
 
     pygame.display.flip()
 
