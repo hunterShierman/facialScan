@@ -7,11 +7,14 @@ screen.fill("blue")
 pygame.display.set_caption('SHIP GAME')
 fps = 60
 
+
 running = True
+clock = pygame.time.Clock()
 plane = pygame.image.load('plane.png')
 plane = pygame.transform.scale(plane, (100, 100))
 background = pygame.image.load('background.jpeg')
 background = pygame.transform.scale(background, (640, 700))
+bullet = pygame.image.load('bullet.jpg')
 
 while running:
     for event in pygame.event.get():
@@ -42,3 +45,21 @@ class Spaceship(pygame.sprite.Sprite):
         bullet = Bullet(self.rect.centerx, self.rect.top)
         all_sprites.add(bullet)
         bullets.add(bullet)
+
+class Bullet(pygame.sprite.Sprite):
+    def __init__(self, x, y):
+        super().__init__()
+        self.image = pygame.image.load('bullet.jpg')
+        self.rect = self.image.get_rect()
+        self.rect.centerx = x
+        self.rect.top = y
+        self.speedy = -10
+
+    def update(self):
+        self.rect.y += self.speedy
+        if self.rect.bottom < 0:
+            self.kill()
+
+
+all_sprites = pygame.sprite.Group()
+bullets = pygame.sprite.Group()
