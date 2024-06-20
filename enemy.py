@@ -18,9 +18,18 @@ plane = pygame.transform.scale(plane, (100, 100))
 class enemyPlane:
 
     def __init__(self, x_coordinate, y_coordinate, health, speed):
+        #image stuff 
         self.image = pygame.image.load("plane.png")
         self.image = pygame.transform.flip(plane, False, True)
         self.image = pygame.transform.scale(plane, (100, 100))
+
+        #movement stuff
+        self.x_loc = x_coordinate 
+        self.y_loc = y_coordinate 
+
+    def update_movement(self, x_coordinate, y_coordinate, image, speed):
+        screen.blit(image, (x_coordinate, y_coordinate))
+
 
 enemy = enemyPlane(100, 100, 1000, 5)
 
@@ -47,6 +56,7 @@ while running:
             running = False
 
     screen.blit(enemy.image, (0,0))
-
+    enemy.update_movement(enemy.x_loc, enemy.y_loc, enemy.image, 5)
+    enemy.y_loc += 1
     pygame.display.flip()
 
